@@ -5,102 +5,37 @@ const auth = require('./auth.json');
 const http = require('follow-redirects').http;
 const fs = require('fs');
 const execSync = require('child_process').execSync;
-
-logger.add(logger.transports.File, {
+// Configure logger settings
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+    colorize: true,
     filename: 'log/network.log',
 });
+logger.level = 'info';
+// Initialize Discord Bot
 var bot = new Discord.Client({
    token: auth.token,
-   autorun: true,
+   autorun: true
 });
 
-serverId = "Put Your Server Id";
+console.log('kotori is starting.');
 
-bot.on('ready', function (evt) {
+// When the bot starts
+bot.on('ready', function(event) {
+    console.log('Logged login %s - %s\n', bot.username, bot.id);
+    logger.info('Logged in as: ');
     logger.info('Connected');
     (function nonconformist(i) {
         setTimeout(function() {
             switch(i) {
                 case 1:
-                    bot.editRole({"serverID":serverID,"roleID":"400727123876118528",color:0x000EFF},function(err,response) {
-                    if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472453836913770536",color:0x000EFF},function(err,response) {
+                    bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xFFF200},function(err,response) {
                         if(err) logger.error(err);
                     });
-                case 2:
-                    bot.editRole({"serverID":serverID,"roleID":"472453889170472973",color:0xFF0000},function(err,response) {
+                    bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xED457D},function(err,response) {
                         if(err) logger.error(err);
                     });
-                    bot.editRole({"serverID":serverID,"roleID":"472453952458457102",color:0xE91E63},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 3:
-                    bot.editRole({"serverID":serverID,"roleID":"472453988693049344",color:0xFF6700},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472453988693049344",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 4:
-                    bot.editRole({"serverID":serverID,"roleID":"472454077159178241",color:0x00FBFF},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454122239426561",color:0xF1749E},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 5:
-                    bot.editRole({"serverID":serverID,"roleID":"472454160088956929",color:0xFFAC00},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454209560641536",color:0xF6A2BE},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 6:
-                    bot.editRole({"serverID":serverID,"roleID":"472454274207711232",color:0xFF00EE},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454276824956948",color:0xFAD1DF},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454315668275201",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 7:
-                    bot.editRole({"serverID":serverID,"roleID":"472454280142520320",color:0xBC00FF},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454283024007188",color:0xF6A2BE},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454304217825281",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 8:
-                    bot.editRole({"serverID":serverID,"roleID":"472454286123728900",color:0x00FF26},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454291723124738",color:0xF1749E},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454308080910366",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                case 9:
-                    bot.editRole({"serverID":serverID,"roleID":"472454295036362754",color:0xFFF200},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454297519521792",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"472454300866445322",color:0xED457D},function(err,response) {
+                    bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xED457D},function(err,response) {
                         if(err) logger.error(err);
                     });
                     break;
@@ -113,6 +48,7 @@ bot.on('ready', function (evt) {
     });
 });
 
+// When chat messages are received
 bot.on('message', function(user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '*') {
         var args = message.substring(1).split(' ');
@@ -123,7 +59,10 @@ bot.on('message', function(user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({to:channelID,message:'Pong! --> Connected to back to the discord bot your Discord server.'});
                 break;
-                case 'lewd':
+	        case 'help':
+                bot.sendMessage({to:channelID,message:'Music room to bot commands: *miscord -shows info about the bot. *lewd -THIS IS ONLY ON 13+ UP IS A PRONHUB. *mmda - This only like who like anime or look at it *ping - Get you see the discord bot is online or offline. *invite - This invite the discord bot to your discord server. *checking in - this for Checking in logs.'});
+                break;	
+            case 'lewd':
                 var explicit = "rating:explicit";
                 if(args.indexOf("rating:safe") >= 0 || args.indexOf("rating:questionable") >= 0)
                     explicit = "";
