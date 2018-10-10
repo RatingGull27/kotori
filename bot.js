@@ -60,7 +60,7 @@ bot.on('message', function(user, userID, channelID, message, evt) {
                 bot.sendMessage({to:channelID,message:'Pong! --> Connected to back to the discord bot your Discord server.'});
                 break;
 	        case 'help':
-                bot.sendMessage({to:channelID,message:'Music room to bot commands: *miscord -shows info about the bot. *lewd -THIS IS ONLY ON 13+ UP IS A PRONHUB. *mmda - This only like who like anime or look at it *ping - Get you see the discord bot is online or offline. *invite - This invite the discord bot to your discord server. *checking in - this for Checking in logs.'});
+                bot.sendMessage({to:channelID,message:'Music room to bot commands:  *lewd -THIS IS ONLY ON 13+ UP IS A PRONHUB. *mmda - This only like who like anime or look at it *ping - Get you see the discord bot is online or offline.'});
                 break;	
             case 'lewd':
                 var explicit = "rating:explicit";
