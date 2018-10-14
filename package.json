@@ -1,10 +1,9 @@
 {
   "name": "kotori",
-  "version": "1.0.0",
-  "description": "no",
+  "version": "1.1.0",
   "scripts": {
-  "start": "node bot.js"
-},
+    "start": "node bot.js"
+  },
   "author": "kfuckwell",
   "dependencies": {
     "booru": "^0.4.0",
@@ -15,5 +14,7 @@
     "replace-in-file": "^3.4.0",
     "sleep": "^5.1.1",
     "winston": "^2.4.2"
-  }
+  },
+  "main": "bot.js",
+  "license": "ISC",
 }
