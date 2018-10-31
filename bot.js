@@ -7,9 +7,9 @@ const fs = require('fs');
 const execSync = require('child_process').execSync;
 // Configure logger settings
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-    colorize: true,
+logger.add(logger.transports.File, {
     filename: 'log/network.log',
+    colorize: true
 });
 logger.level = 'info';
 // Initialize Discord Bot
@@ -32,14 +32,6 @@ bot.on('ready', function(event) {
                     bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xFFF200},function(err,response) {
                         if(err) logger.error(err);
                     });
-                    bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    bot.editRole({"serverID":serverID,"roleID":"put you roleid here",color:0xED457D},function(err,response) {
-                        if(err) logger.error(err);
-                    });
-                    break;
-                    i = 0;
                     break;
             }
             ++i;
@@ -59,7 +51,7 @@ bot.on('message', function(user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({to:channelID,message:'Pong! --> Connected to back to the discord bot your Discord server.'});
                 break;
-	        case 'help':
+	    case 'help':
                 bot.sendMessage({to:channelID,message:'Music room to bot commands:  *lewd -THIS IS ONLY ON 13+ UP IS A PRONHUB. *mmda - This only like who like anime or look at it *ping - Get you see the discord bot is online or offline.'});
                 break;	
             case 'lewd':
